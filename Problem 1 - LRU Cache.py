@@ -1,3 +1,5 @@
+import math  
+
 def sqrt(number):
     """
     Calculate the floored square root of a number
@@ -7,7 +9,8 @@ def sqrt(number):
     Returns:
        int: Floored Square Root
     """
-    pass
+    
+    return round(math.sqrt(number), 0)
 
 print ("Pass" if  (3 == sqrt(9)) else "Fail")
 print ("Pass" if  (0 == sqrt(0)) else "Fail")
