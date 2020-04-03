@@ -1,0 +1,12 @@
+ === Problem 1 - LRU Cache Explanation:  ===
+
+The cache works with a hash table (dictionary) referencing to linked objects
+- To adress the need for a fast look up the hash table was implemented to achieve O(1) time complexity 
+- To adress the need for a fast insertion and deletion the linked object working as list was implemented to achieve O(1) time complexity.
+
+Time and space complexity:
+- get: Time O(1), Space O(1) -> Our dictionary can access easily
+- set: Time O(1), Space O(1) -> We can add a new entry in O(1) thanks to self.head
+
+
+ === Problem 2 - File recursion:  ===
