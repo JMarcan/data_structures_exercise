@@ -27,3 +27,11 @@ Soltuion is similar to one implemented in Problem 2 - File recursion with the di
  - Time  O(n) as each group and its subgroups needs to be looped through the cycle
  - Space O(n) as each subgroup will lead to recursion 
  
+ === Problem 5 - Blockchain:  ===
+Blockchain object links to its Blocks. Each Block contains link to hash of its previous block.
+
+ Time and space complexity:
+ - Time  O(1) for adding a new block to blockchain
+ - Space O(n) as each new block needs to be stored to blockchain
+ 
+  === Problem 6 - Union and Intersection:  ===
