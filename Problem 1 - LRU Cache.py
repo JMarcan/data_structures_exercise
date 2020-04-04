@@ -98,17 +98,20 @@ def test_cases(cache_size):
     our_cache.set(2, 2);
     our_cache.set(3, 3);
     our_cache.set(4, 4);
-
+    
+    # TC 1
     if our_cache.get(1) == 1: # returns 1
         print ("1. Passed")
     else: 
         print ("1. Failed")
         
+    # TC 2    
     if our_cache.get(2)  == 2: # returns 2
         print ("2. Passed")
     else: 
         print ("2. Failed")
         
+    # TC 3    
     if our_cache.get(9)  == -1: # returns -1 because 9 is not presented in the cache
         print ("3. Passed")
     else: 
@@ -116,17 +119,20 @@ def test_cases(cache_size):
         
     our_cache.set(5, 5) 
     our_cache.set(6, 6)
-
+    
+    # TC 4
     if our_cache.get(3)  == -1: # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
         print ("4. Passed")
     else: 
         print ("4. Failed")
         
+    # TC 5    
     if our_cache.get(-1)  == -1: # returns -1 because -1 index do not exists
         print ("5. Passed")
     else: 
         print ("5. Failed")
-
-# execute unit tests    
-test_cases(5)    
+        
+if __name__ == '__main__':
+    # execute test cases  
+    test_cases(5)    
     
