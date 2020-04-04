@@ -10,3 +10,12 @@ Time and space complexity:
 
 
  === Problem 2 - File recursion:  ===
+Algorithm goes through each item in selected directory. Files with desired extension are added to the list. 
+Subfolders are searched by recursion call to the same function with updated path.
+ 
+ Time and space complexity:
+ - Time  O(n) as each item (file, folder) needs to be looped through the cycle
+ - Space O(n) as each file fitting to our criterias needs to be kept in the list
+ 
+  === Problem 3 - Hufman coding:  ===
+ 
