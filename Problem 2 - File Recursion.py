@@ -1,30 +1,72 @@
-def rotated_array_search(input_list, number):
+import os
+
+def find_files(suffix, path):
     """
-    Find the index by searching in a rotated sorted array
+    Find all files beneath path with file name suffix.
+
+    Note that a path may contain further subdirectories
+    and those subdirectories may also contain further subdirectories.
+
+    There are no limit to the depth of the subdirectories can be.
 
     Args:
-       input_list(array), number(int): Input array to search and the target
+      suffix(str): suffix if the file name to be found
+      path(str): path of the file system
+
     Returns:
-       int: Index or -1
+       a list of paths
     """
-   pass
+    if not os.path.isdir(path):
+        print("[Warrning] find_files: provided path (\'{0}\') is not valid. Returning empty list".format(path))
+        return []
+    
+    if len(suffix) == 0 or suffix.isnumeric():
+        print("[Warrning] find_files: provided suffix (\'{0}\') is not valid".format(suffix))
+        return []
+    
+    files_list = []
+    for file in os.listdir(path):
+        if os.path.isfile(path + file): 
+            if file.endswith(suffix):
+                files_list.append(path + file)
+        else: # in case of folder apply recursion
+            files_list += find_files(suffix, path + file + "/")
+    
+    return files_list
 
-def linear_search(input_list, number):
-    for index, element in enumerate(input_list):
-        if element == number:
-            return index
-    return -1
+def test_cases(path):
+    
+    # TC 1 - find .c files
+    expected_c_files = ['Problem 2  - testdir/subdir1/a.c', 'Problem 2  - testdir/subdir3/subsubdir1/b.c', 'Problem 2  - testdir/subdir5/a.c', 'Problem 2  - testdir/t1.c']
+    if find_files(".c", path) == expected_c_files: # returns 1
+        print ("TC 1. Passed")
+    else: 
+        print ("TC 1. Failed")
+    
+    # TC 2 - find .h files
+    expected_h_files = ['Problem 2  - testdir/subdir1/a.h', 'Problem 2  - testdir/subdir3/subsubdir1/b.h', 'Problem 2  - testdir/subdir5/a.h', 'Problem 2  - testdir/t1.h']
+    if find_files(".h", path) == expected_h_files: # returns 1
+        print ("TC 2. Passed")
+    else: 
+        print ("TC 2. Failed")
+        
+    # TC 3 - deal with not existing path provided    
+    if find_files(".h", "not_existing_path") == []:
+        print ("TC 3. Passed")
+    else: 
+        print ("TC 3. Failed")
+        
+    
+    # TC 4 - with empty extension 
+    if find_files("", path) == []:
+        print ("TC 4. Passed")
+    else: 
+        print ("TC 4. Failed")
+        
 
-def test_function(test_case):
-    input_list = test_case[0]
-    number = test_case[1]
-    if linear_search(input_list, number) == rotated_array_search(input_list, number):
-        print("Pass")
-    else:
-        print("Fail")
 
-test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])
-test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])
-test_function([[6, 7, 8, 1, 2, 3, 4], 8])
-test_function([[6, 7, 8, 1, 2, 3, 4], 1])
-test_function([[6, 7, 8, 1, 2, 3, 4], 10])
+if __name__ == '__main__':
+    # execute test cases  
+    path = "Problem 2  - testdir/"
+    test_cases(path)    
+
