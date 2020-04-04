@@ -17,5 +17,13 @@ Subfolders are searched by recursion call to the same function with updated path
  - Time  O(n) as each item (file, folder) needs to be looped through the cycle
  - Space O(n) as each file fitting to our criterias needs to be kept in the list
  
-  === Problem 3 - Hufman coding:  ===
+=== Problem 3 - Hufman coding:  ===
+  
+=== Problem 4 - Active Directory:  ===
+Algorithm check whether use is direct member of a group. If not, it goes recursively through each subgroup till the user is found.
+Soltuion is similar to one implemented in Problem 2 - File recursion with the difference that when member if found, we can stop processing and return True.
+
+ Time and space complexity:
+ - Time  O(n) as each group and its subgroups needs to be looped through the cycle
+ - Space O(n) as each subgroup will lead to recursion 
  
