@@ -34,4 +34,20 @@ Blockchain object links to its Blocks. Each Block contains link to hash of its p
  - Time  O(1) for adding a new block to blockchain
  - Space O(n) as each new block needs to be stored to blockchain
  
-  === Problem 6 - Union and Intersection:  ===
+=== Problem 6 - Union and Intersection:  ===  
+For union the algorithm just loops through each item in both lists and add unique values into its output. 
+Unique values are kept in set structure to ensure that the final list contains only unique values.
+   
+For intersection the algorithm loops through each item in list_1 and stores unique values into set structure.
+Then algorithm loops through each item in list_2 and produces final intersection.
+  
+Time and space complexity: 
+ For union:
+  - Time O(n) as it loops through each item
+  - Space O(n) as it stores each unique item
+  
+   For intersection:
+  - Time O(n) as it loops through each item
+  - Space O(n) as it stores each unique item and items for which was not yet found match from list_1
+  
+  
