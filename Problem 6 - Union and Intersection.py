@@ -42,8 +42,16 @@ class LinkedList:
         return size
 
 def union(llist_1, llist_2):
+    """
+        Returns union of two provided LinkedLists
     
-     # Your Solution Here
+        Args:
+            - llist_1(LinkedList): data to be written into the new block
+            - llist_2(LinkedList)
+
+        Returns:
+            - True if the block was added. Otherwise False
+    """
 
     if llist_1 is None or isinstance(llist_1, LinkedList) is False or llist_2 is None or isinstance(llist_2, LinkedList) is False:
         print ("[Warrning] union: Lists cannot be none. Returning empty list")
