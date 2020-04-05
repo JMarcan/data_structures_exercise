@@ -14,7 +14,15 @@ class CachedItem:
 class LRU_Cache(object):
 
     def __init__(self, capacity):
-        # Initialize class variables
+        """
+         Initialize LRU_Cache with selected capacity 
+    
+        Args:
+            - capacity(int): cache capacity
+
+        Returns:
+            - None
+        """
         if capacity < 1:
             print ("Warrning: Input cache capacity was less than 1 ({0}). \
                    Cache is initialized with the capacity 1".format(capacity))
@@ -29,7 +37,16 @@ class LRU_Cache(object):
         self.tail_key = None
 
     def get(self, key):
-        # Retrieve item from provided key. Return -1 if nonexistent. 
+        """
+         Retrieve cached item from provided key. 
+    
+        Args:
+            key(str): key of cached item to be retrieved
+
+        Returns:
+            - returns item.value
+            - returns -1 if nonexistent in the cache 
+        """
         
         item = self.cached_items.get(key)
         
@@ -63,7 +80,17 @@ class LRU_Cache(object):
           
 
     def set(self, key, value):
-        # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item. 
+        """
+         Set the value if the key is not present in the cache. 
+         If the cache is at capacity remove the oldest item. 
+    
+        Args:
+            key(str): key under which will be cache item accessed
+            value(str): value to be stored for cache item
+
+        Returns:
+            None
+        """
         
         if self.capacity < 1:
             print("Cannot perform operations on cache capacity less than 1 (0}".format(self.capacity))
@@ -92,6 +119,16 @@ class LRU_Cache(object):
         return self.num_entries
 
 def test_cases(cache_size):
+    """
+    Execute test cases for LRU_Cache
+    Print statements whether the test case passed or not are printed
+    
+    Args:
+      cache_size(int): size of cache to be initialized
+
+    Returns:
+       None
+    """
     our_cache = LRU_Cache(cache_size)
 
     our_cache.set(1, 1)
