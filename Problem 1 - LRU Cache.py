@@ -1,11 +1,11 @@
-class ItemObj:
+class CachedItem:
     def __init__(self, value):
         self.value = value
-        self.next = None
-        self.prev = None
+        self.next_key = None
+        self.prev_key = None
 
     def __repr__(self):
-        """ return value as a string when class is used in print statement self.items"""
+        """ return value as a string when class is used in print statement self.cached_items"""
         if self.value is None:
             return 'None'
         return str(self.value)
@@ -22,42 +22,42 @@ class LRU_Cache(object):
             
         print ("Cache initialized with the capacity: {0}".format(capacity))
         
-        self.items = {}
+        self.cached_items = {}
         self.capacity = capacity
         self.num_entries = 0
-        self.head = None
-        self.tail = None
+        self.head_key = None
+        self.tail_key = None
 
     def get(self, key):
         # Retrieve item from provided key. Return -1 if nonexistent. 
         
-        item = self.items.get(key)
+        item = self.cached_items.get(key)
         
         print("\nGet Element with Key: {0}\n \
         Head: {1}\n \
         Tail: {2}\n \
-        Items: {3}".format(key, self.head, self.tail, self.items))
+        Cache: {3}".format(key, self.head_key, self.tail_key, self.cached_items))
         
         if item is None:
             return -1
         
-        if item.prev is not None:
-            self.items[item.prev].next = item.next
+        if item.prev_key is not None:
+            self.items[item.pre_keyv].next_key = item.next_key
         else:
             print("Updating tail with key: {0}".format(key))
-            self.tail = item.next
+            self.tail_key = item.next_key
             
-        if item.next is not None:
-            self.items[item.next].prev = item.prev
+        if item.next_key is not None:
+            self.cached_items[item.next_key].prev_key = item.prev_key
 
-        head = self.items.get(self.head, None)
+        head = self.cached_items.get(self.head_key, None)
         if head is not None:
-            head.next = key
+            head.next_key = key
 
-        item.prev = self.head
-        item.next = None
+        item.prev_key = self.head_key
+        item.next_key = None
 
-        self.head = key
+        self.head_key = key
         
         return item.value
           
@@ -69,24 +69,24 @@ class LRU_Cache(object):
             print("Cannot perform operations on cache capacity less than 1 (0}".format(self.capacity))
             return
         
-        head = self.items.get(self.head)
-        new_item = ItemObj(value)
+        head = self.cached_items.get(self.head_key)
+        new_item = CachedItem(value)
         
         if head is None:
-            self.head = key
-            self.tail = key
+            self.head_key = key
+            self.tail_key = key
         else:
-            new_item.prev = self.head
-            head.next = key
+            new_item.prev_key = self.head_key
+            head.next_key = key
         
-        self.items[key] = new_item
-        self.head = key
+        self.cached_items[key] = new_item
+        self.head_key = key
         
-        if len(self.items) > self.capacity:
-            print("Cache capacity exceeded, deleting the last accessed item {0}".format(self.tail))
-            tail = self.items[self.tail]
-            del self.items[self.tail]
-            self.tail = tail.next
+        if len(self.cached_items) > self.capacity:
+            print("Cache capacity exceeded, deleting the last accessed item {0}".format(self.tail_key))
+            tail = self.cached_items[self.tail_key]
+            del self.cached_items[self.tail_key]
+            self.tail_key = tail.next_key
     
     def size(self):
         return self.num_entries
@@ -94,10 +94,10 @@ class LRU_Cache(object):
 def test_cases(cache_size):
     our_cache = LRU_Cache(cache_size)
 
-    our_cache.set(1, 1);
-    our_cache.set(2, 2);
-    our_cache.set(3, 3);
-    our_cache.set(4, 4);
+    our_cache.set(1, 1)
+    our_cache.set(2, 2)
+    our_cache.set(3, 3)
+    our_cache.set(4, 4)
     
     # TC 1
     if our_cache.get(1) == 1: # returns 1
@@ -111,7 +111,7 @@ def test_cases(cache_size):
     else: 
         print ("TC 2. Failed")
         
-    # TC 3    
+    # TC 3 - old, already removed items from the cahce   
     if our_cache.get(9)  == -1: # returns -1 because 9 is not presented in the cache
         print ("TC 3. Passed")
     else: 
@@ -120,17 +120,24 @@ def test_cases(cache_size):
     our_cache.set(5, 5) 
     our_cache.set(6, 6)
     
-    # TC 4
+    # TC 4 - old, already removed items from the cahce
     if our_cache.get(3)  == -1: # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
         print ("TC 4. Passed")
     else: 
         print ("TC 4. Failed")
         
-    # TC 5    
+    # TC 5 - not existing index  
     if our_cache.get(-1)  == -1: # returns -1 because -1 index do not exists
         print ("TC 5. Passed")
     else: 
         print ("TC 5. Failed")
+    
+    empty_cache = LRU_Cache(cache_size)    
+    # TC 6 - empty cache  
+    if empty_cache.get(1)  == -1: # returns -1 because the cache is empty
+        print ("TC 6. Passed")
+    else: 
+        print ("TC 7. Failed")
         
 if __name__ == '__main__':
     # execute test cases  
