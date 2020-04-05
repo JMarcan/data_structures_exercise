@@ -5,6 +5,18 @@ from datetime import datetime
 class Block:
 
     def __init__(self, timestamp, data_hash, previous_hash, index):
+      """
+        Initialize one blockchain Block 
+    
+        Args:
+            - timestamp(str): timestamp
+            - data_hash(str): hashed data to be stored
+            - previous_hash(str): hash of the previous block
+            - index(int): index of a block
+
+        Returns:
+            - None
+      """
       self.timestamp = timestamp
       self.hash = data_hash
       self.previous_hash = previous_hash
@@ -18,9 +30,17 @@ class Block:
 class Blockchain:
     
     def __init__(self, name):
+        """
+        Initialize a blockchain 
+    
+        Args:
+            - name(str): name of the blockchain
+
+        Returns:
+            - None
+      """
         self.name = name
         
-        self.blocks = []
         self.last_block_idx = 0
         self.previous_hash = None
     
