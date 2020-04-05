@@ -131,9 +131,9 @@ def test_cases(cache_size):
         print ("TC 5. Passed")
     else: 
         print ("TC 5. Failed")
-    
-    empty_cache = LRU_Cache(cache_size)    
-    # TC 6 - empty cache  
+        
+    # TC 6 - empty cache
+    empty_cache = LRU_Cache(cache_size) 
     if empty_cache.get(1)  == -1: # returns -1 because the cache is empty
         print ("TC 6. Passed")
     else: 
