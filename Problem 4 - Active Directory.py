@@ -24,11 +24,14 @@ class Group(object):
 
 def is_user_in_group(user, group):
     """
-    Return True if user is in the group, False otherwise.
+    Check whether the user belongs to the group
 
     Args:
       user(str): user name/id
       group(class:Group): group to check user membership against
+      
+    Returns:
+        - True if user is in the group, False otherwise
     """
     if isinstance(group, Group) == False:
         print("[Warrning] is_user_in_group: provided group (\'{0}\') does not exists. Returning False".format(group))
@@ -46,6 +49,16 @@ def is_user_in_group(user, group):
     return False
     
 def test_cases():
+    """
+    Execute test cases for active directory implementation
+    Print statements whether the test case passed or not are printed
+    
+    Args:
+      None
+
+    Returns:
+       None
+    """
     parent = Group("parent")
     child = Group("child")
     sub_child = Group("subchild")
