@@ -1,14 +1,14 @@
 class Group(object):
     def __init__(self, _name):
         self.name = _name
-        self.groups = []
-        self.users = []
+        self.groups = set()
+        self.users = set()
 
     def add_group(self, group):
-        self.groups.append(group)
+        self.groups.add(group)
 
     def add_user(self, user):
-        self.users.append(user)
+        self.users.add(user)
 
     def get_groups(self):
         return self.groups
