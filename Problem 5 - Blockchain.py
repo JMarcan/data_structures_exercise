@@ -52,6 +52,19 @@ class Blockchain:
       return sha.hexdigest()
   
     def add_block(self, data):
+        """
+        Add a block to the blockchain 
+    
+        Args:
+            - data(str): data to be written into the new block
+
+        Returns:
+            - True if the block was added. Otherwise False
+      """
+        if data is None or type(data) is not str or len(data) < 1 :
+            print ("[Warrning] add_block: Invalid data (None, or not string or empty string). No block is addedd.")
+            return False
+   
         self.last_block_idx += 1
         data_hash = self.calc_hash(data)
         
@@ -65,18 +78,55 @@ class Blockchain:
         b = Block(datetime.now(), data_hash, previous_hash, previous_block, self.last_block_idx)
         self.head = b
         
-      
-if __name__ == '__main__':
+        return True
+        
+def test_cases():
     blockchain = Blockchain("My Blockchain")
     
-    blockchain.add_block("First Block")
-    blockchain.add_block("Second Block")
-    blockchain.add_block("Third Block")
+    #TC 1
+    res = blockchain.add_block("First Block")
+    if res == True:
+        print ("TC 1. Passed")
+    else:
+        print ("TC 1. Failed")
     
+    #TC 2
+    res = blockchain.add_block("Second Block")
+    if res == True:
+        print ("TC 2. Passed")
+    else:
+        print ("TC 2. Failed")
+    
+    #TC 3
+    res = blockchain.add_block("Third Block")
+    if res == True:
+        print ("TC 3. Passed")
+    else:
+        print ("TC 3. Failed")
+    
+    #TC 4 - corner case - None
+    res = blockchain.add_block(None)
+    if res == False:
+        print ("TC 4. Passed")
+    else:
+        print ("TC 4. Failed")
+    
+    #TC 5 - corner case - empty string
+    res = blockchain.add_block("")
+    if res == False:
+        print ("TC 5. Passed")
+    else:
+        print ("TC 5. Failed")
+    
+    # visual verification for TC 1-3
     block = blockchain.head
     while block:
         print (block)
         block = block.previous_block
+      
+if __name__ == '__main__':
+    # execute test cases  
+    test_cases() 
 
     
     
