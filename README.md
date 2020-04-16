@@ -5,7 +5,7 @@ I did this project as part of Udacity, Data Structure and Algorithms Nanodegree 
 This is especially important for solutions that need to be scaled. Or solutions with limited computing power. As robots.
 
 ## Project description
-**My goal for the project was to use the data structures for each of the six problems:**
+**My goal for the project was to use the right data structures for each of the six problems:**
 1. LRU Cache: Design data structure known as a Least Recently Used (LRU) Cache
 2. File Recursion: Design algorithm to find all files under a directory with extension *.c* 
 3. Huffman Coding: Implement Huffman encoding and decoding algorithm
